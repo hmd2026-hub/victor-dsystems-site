@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Victor-D Systems</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #000;
+    color: #fff;
+}
+
+/* GLOBAL */
+section {
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* HERO */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero h1 {
+    font-size: 3rem;
+}
+
+.hero p {
+    opacity: 0.7;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 25px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* ORB */
+.orb {
+    width: 250px;
+    height: 250px;
+    margin: 40px auto;
+    border-radius: 50%;
+    background: radial-gradient(circle, #4da6ff, #000);
+    animation: spin 20s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* SYSTEM INTERACTIVE */
+.system-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.system-item {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: 0.3s;
+}
+
+.system-item:hover {
+    opacity: 1;
+}
+
+#system-detail {
+    margin-top: 30px;
+    opacity: 0.8;
+}
+
+/* INVESTOR MODE */
+.hidden {
+    display: none;
+}
+
+/* FORM */
+input, select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    background: #111;
+    border: 1px solid #333;
+    color: #fff;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+}
+
+/* FADE */
+.fade {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s;
+}
+
+.fade.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+footer {
+    opacity: 0.5;
+    padding: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="container fade">
+        <h1>AI Infrastructure for Scalable Revenue Systems</h1>
+        <p>Deploy → Control → Learn → Monetize</p>
+        <p>A system, not a tool.</p>
+
+        <button onclick="toggleInvestor()">Investor Access</button>
+
+        <div class="orb"></div>
+    </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="fade">
+    <div class="container">
+        <p>Most AI generates output.</p>
+        <p>It doesn’t generate revenue.</p>
+        <br>
+        <p>Most businesses deploy tools.</p>
+        <p>They don’t deploy systems.</p>
+    </div>
+</section>
+
+<!-- INTERACTIVE SYSTEM -->
+<section class="fade">
+    <div class="container">
+        <h2>System Core</h2>
+
+        <div class="system-grid">
+            <div class="system-item" onclick="showDetail('execution')">Execution</div>
+            <div class="system-item" onclick="showDetail('governance')">Governance</div>
+            <div class="system-item" onclick="showDetail('learning')">Learning</div>
+            <div class="system-item" onclick="showDetail('monetization')">Monetization</div>
+        </div>
+
+        <div id="system-detail"></div>
+    </div>
+</section>
+
+<!-- INVESTOR MODE -->
+<section id="investor" class="hidden fade">
+    <div class="container">
+        <h2>Investor Overview</h2>
+
+        <p>Structured for high-ticket deployments and recurring revenue systems.</p>
+        <p>Built for territorial scaling and capital-efficient growth.</p>
+    </div>
+</section>
+
+<!-- ACCESS FORM -->
+<section class="fade">
+    <div class="container">
+        <h2>Request Access</h2>
+
+        <form>
+            <input type="text" placeholder="Name" required>
+            <input type="email" placeholder="Email" required>
+
+            <select>
+                <option>Capital Range</option>
+                <option>$10K – $100K</option>
+                <option>$100K – $1M</option>
+                <option>$1M+</option>
+            </select>
+
+            <select>
+                <option>Role</option>
+                <option>Investor</option>
+                <option>Operator</option>
+                <option>Partner</option>
+            </select>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    Salvador Aniceta & Co. Pte. Ltd.<br>
+    Victor-D Systems<br>
+    www.victor-dsystems.tech
+</footer>
+
+<script>
+// FADE
+const fades = document.querySelectorAll('.fade');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('show');
+    });
+});
+
+fades.forEach(f => observer.observe(f));
+
+// INTERACTIVE SYSTEM
+function showDetail(type) {
+    const detail = document.getElementById("system-detail");
+
+    const content = {
+        execution: "Deploy multi-agent systems for revenue generation.",
+        governance: "Control risk, compliance, and operational integrity.",
+        learning: "Continuously optimize through data feedback loops.",
+        monetization: "Capture value through licensing and recurring flows."
+    };
+
+    detail.innerText = content[type];
+}
+
+// INVESTOR MODE
+function toggleInvestor() {
+    const section = document.getElementById("investor");
+    section.classList.toggle("hidden");
+}
+</script>
+
+</body>
+</html>
+
