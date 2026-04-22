@@ -32,7 +32,7 @@ input, button {
 <button onclick="login()">Login</button>
 
 <script>
-const supabase = supabase.createClient(
+const _supabase = supabase.createClient(
 "https://dzzoupgpaxxhxusptbdr.supabase.co",
 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR6em91cGdwYXh4aHh1c3B0YmRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4NjEwMzIsImV4cCI6MjA5MjQzNzAzMn0.5rnHArkFwW4h-n3uCH_ZwYLXYvd-j2tATaWq-EGBDmo");
 
@@ -40,7 +40,7 @@ async function login() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { error } = await _supabase.auth.signInWithPassword({
         email,
         password
     });
