@@ -36,29 +36,47 @@ body {
 
 <script>
 const _supabase = supabase.createClient(
-"https://dzzoupgpaxxhxusptbdr.supabase.co",
-"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR6em91cGdwYXh4aHh1c3B0YmRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4NjEwMzIsImV4cCI6MjA5MjQzNzAzMn0.5rnHArkFwW4h-n3uCH_ZwYLXYvd-j2tATaWq-EGBDmo");
+    "https://dzzoupgpaxxhxusptbdr.supabase.co",
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR6em91cGdwYXh4aHh1c3B0YmRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4NjEwMzIsImV4cCI6MjA5MjQzNzAzMn0.5rnHArkFwW4h-n3uCH_ZwYLXYvd-j2tATaWq-EGBDmo");
 
-async function loadDeals() {
-    const { data } = await _supabase
-        .from('deals')
-        .select('*');
-
+  async function loadDeals() {
     const container = document.getElementById("deals");
+    
+    // Proves the script is at least STARTING
+    container.innerHTML = "System Booting... Checking S&A Global Database...";
 
-    data.forEach(d => {
+    try {
+      const { data, error } = await _supabase.from('deals').select('*');
+
+      if (error) {
+        container.innerHTML = `<span style="color:red;">API ERROR: ${error.message}</span>`;
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        container.innerHTML = `<span style="color:yellow;">SUCCESS: Connection Live. <br> STATUS: 0 Deals Found. <br> ACTION: Go to Supabase and 'Insert Row' then Save.</span>`;
+        return;
+      }
+
+      // If data exists, show it!
+      container.innerHTML = ""; 
+      data.forEach(d => {
         const div = document.createElement("div");
         div.className = "card";
         div.innerHTML = `
-            <h3>${d.name}</h3>
-            <p>${d.description}</p>
-            <p>Allocation: ${d.type}</p>
+          <h3 style="color:#00ff00;">${d.name || 'Untitled Project'}</h3>
+          <p>${d.description || 'No description provided.'}</p>
+          <p><strong>Type:</strong> ${d.type || 'Standard'}</p>
         `;
         container.appendChild(div);
-    });
-}
+      });
 
-loadDeals();
+    } catch (err) {
+      container.innerHTML = `<span style="color:orange;">SCRIPT CRASH: ${err.message}</span>`;
+    }
+  }
+
+  loadDeals();
 </script>
 
 </body>
