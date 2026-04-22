@@ -187,7 +187,7 @@ footer {
 <!-- ACCESS FORM -->
 <section class="fade">
     <div class="container">
-        <h2>Request Access</h2>
+        <button onclick="requestAccess()">Request Access</button>
 
         <form>
             <input type="text" placeholder="Name" required>
@@ -248,6 +248,18 @@ function showDetail(type) {
 function toggleInvestor() {
     const section = document.getElementById("investor");
     section.classList.toggle("hidden");
+}
+</script>
+
+<script>
+function requestAccess() {
+    const pass = prompt("Enter Access Code:");
+
+    if (pass === "VD-ACCESS") {
+        window.location.href = "investor.html";
+    } else {
+        alert("Access restricted.");
+    }
 }
 </script>
 
