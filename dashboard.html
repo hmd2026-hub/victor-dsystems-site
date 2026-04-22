@@ -42,37 +42,34 @@ const _supabase = supabase.createClient(
   async function loadDeals() {
     const container = document.getElementById("deals");
     
-    // Proves the script is at least STARTING
-    container.innerHTML = "System Booting... Checking S&A Global Database...";
-
     try {
       const { data, error } = await _supabase.from('deals').select('*');
 
       if (error) {
-        container.innerHTML = `<span style="color:red;">API ERROR: ${error.message}</span>`;
+        console.error(error);
         return;
       }
 
       if (!data || data.length === 0) {
-        container.innerHTML = `<span style="color:yellow;">SUCCESS: Connection Live. <br> STATUS: 0 Deals Found. <br> ACTION: Go to Supabase and 'Insert Row' then Save.</span>`;
+        container.innerHTML = "<p>No active deals found.</p>";
         return;
       }
 
-      // If data exists, show it!
+      // Success: Build the professional cards
       container.innerHTML = ""; 
       data.forEach(d => {
         const div = document.createElement("div");
         div.className = "card";
         div.innerHTML = `
-          <h3 style="color:#00ff00;">${d.name || 'Untitled Project'}</h3>
-          <p>${d.description || 'No description provided.'}</p>
-          <p><strong>Type:</strong> ${d.type || 'Standard'}</p>
+          <h3 style="color: #fff; margin-bottom: 10px;">${d.name}</h3>
+          <p style="color: #ccc;">${d.description}</p>
+          <p style="font-size: 0.8rem; color: #888;">Allocation: ${d.type}</p>
         `;
         container.appendChild(div);
       });
 
     } catch (err) {
-      container.innerHTML = `<span style="color:orange;">SCRIPT CRASH: ${err.message}</span>`;
+      console.error("Critical Load Error:", err);
     }
   }
 
