@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+<style>
+body {
+    background: #000;
+    color: #fff;
+    font-family: sans-serif;
+    text-align: center;
+    padding-top: 100px;
+}
+
+input, button {
+    padding: 10px;
+    margin: 10px;
+    width: 250px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Private Access</h1>
+
+<input id="email" placeholder="Email"><br>
+<input id="password" type="password" placeholder="Password"><br>
+
+<button onclick="login()">Login</button>
+
+<script>
+const supabase = supabase.createClient(
+"YOUR_URL",
+"YOUR_PUBLIC_KEY"
+);
+
+async function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+    });
+
+    if (error) {
+        alert("Access denied");
+    } else {
+        window.location.href = "dashboard.html";
+    }
+}
+</script>
+
+</body>
+</html>
