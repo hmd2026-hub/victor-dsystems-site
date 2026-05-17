@@ -1,271 +1,414 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Victor-D Systems</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+  <title>Victor-D Systems</title>
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    background: #000;
-    color: #fff;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* GLOBAL */
-section {
-    padding: 100px 20px;
-    text-align: center;
-}
+    body {
+      background: #050505;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
 
-.container {
-    max-width: 1100px;
-    margin: auto;
-}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-/* HERO */
-.hero {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
 
-.hero h1 {
-    font-size: 3rem;
-}
+    header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      background: rgba(5,5,5,0.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
 
-.hero p {
-    opacity: 0.7;
-}
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 0;
+    }
 
-button {
-    margin-top: 20px;
-    padding: 10px 25px;
-    border: 1px solid rgba(255,255,255,0.3);
-    background: transparent;
-    color: #fff;
-    cursor: pointer;
-}
+    .logo {
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
 
-/* ORB */
-.orb {
-    width: 250px;
-    height: 250px;
-    margin: 40px auto;
-    border-radius: 50%;
-    background: radial-gradient(circle, #4da6ff, #000);
-    animation: spin 20s linear infinite;
-}
+    .nav-btn {
+      padding: 12px 22px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      transition: 0.3s ease;
+    }
 
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
+    .nav-btn:hover {
+      background: #fff;
+      color: #000;
+    }
 
-/* SYSTEM INTERACTIVE */
-.system-grid {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 40px;
-    flex-wrap: wrap;
-}
+    section {
+      padding: 140px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
 
-.system-item {
-    cursor: pointer;
-    opacity: 0.6;
-    transition: 0.3s;
-}
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-.system-item:hover {
-    opacity: 1;
-}
+    .hero h1 {
+      font-size: 72px;
+      line-height: 1.05;
+      max-width: 1000px;
+      margin: auto;
+      font-weight: 600;
+    }
 
-#system-detail {
-    margin-top: 30px;
-    opacity: 0.8;
-}
+    .hero p {
+      margin-top: 30px;
+      font-size: 22px;
+      color: rgba(255,255,255,0.72);
+      max-width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-/* INVESTOR MODE */
-.hidden {
-    display: none;
-}
+    .hero-btn {
+      margin-top: 45px;
+      display: inline-block;
+      padding: 16px 34px;
+      background: #ffffff;
+      color: #000000;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
 
-/* FORM */
-input, select {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    background: #111;
-    border: 1px solid #333;
-    color: #fff;
-}
+    .hero-btn:hover {
+      opacity: 0.85;
+    }
 
-form {
-    max-width: 400px;
-    margin: auto;
-}
+    .section-title {
+      font-size: 48px;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
 
-/* FADE */
-.fade {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: 1s;
-}
+    .section-text {
+      font-size: 20px;
+      color: rgba(255,255,255,0.72);
+      max-width: 850px;
+    }
 
-.fade.show {
-    opacity: 1;
-    transform: translateY(0);
-}
+    .problem-grid {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
 
-footer {
-    opacity: 0.5;
-    padding: 40px;
-}
-</style>
+    .problem-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 28px;
+      min-height: 220px;
+    }
+
+    .problem-card h3 {
+      margin-bottom: 18px;
+      font-size: 22px;
+    }
+
+    .problem-card p {
+      color: rgba(255,255,255,0.65);
+    }
+
+    .diagram-section {
+      text-align: center;
+    }
+
+    .diagram-section img {
+      width: 100%;
+      max-width: 1000px;
+      margin-top: 60px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .gateway-box {
+      margin-top: 60px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 40px;
+    }
+
+    .gateway-box ul {
+      margin-top: 20px;
+      padding-left: 20px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .cta-section {
+      text-align: center;
+    }
+
+    .request-form {
+      margin-top: 50px;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .request-form input,
+    .request-form textarea {
+      width: 100%;
+      padding: 18px;
+      margin-bottom: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #fff;
+      font-size: 16px;
+    }
+
+    .request-form button {
+      width: 100%;
+      padding: 18px;
+      background: #fff;
+      color: #000;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    .request-form button:hover {
+      opacity: 0.85;
+    }
+
+    footer {
+      padding: 60px 0;
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+      font-size: 14px;
+    }
+
+    @media(max-width: 768px) {
+
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .section-title {
+        font-size: 34px;
+      }
+
+      .hero p,
+      .section-text {
+        font-size: 18px;
+      }
+
+    }
+
+  </style>
 </head>
 
 <body>
 
-<!-- HERO -->
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">
+        VICTOR-D SYSTEMS
+      </div>
+
+      <a href="#request-access" class="nav-btn">
+        Request Access
+      </a>
+    </nav>
+  </div>
+</header>
+
 <section class="hero">
-    <div class="container fade">
-        <h1>AI Infrastructure for Scalable Revenue Systems</h1>
-        <p>Deploy → Control → Learn → Monetize</p>
-        <p>A system, not a tool.</p>
+  <div class="container">
 
-        <button onclick="window.location.href='login.html'">
-Investor Access
-</button>
+    <h1>
+      Pre-Execution AI Control Infrastructure
+    </h1>
 
+    <p>
+      Autonomous AI systems can now execute real-world actions.
+      Most operate without deterministic control before execution.
+    </p>
 
-        <div class="orb"></div>
-    </div>
+    <a href="#request-access" class="hero-btn">
+      Request Access
+    </a>
+
+  </div>
 </section>
 
-<!-- PROBLEM -->
-<section class="fade">
-    <div class="container">
-        <p>Most AI generates output.</p>
-        <p>It doesn’t generate revenue.</p>
-        <br>
-        <p>Most businesses deploy tools.</p>
-        <p>They don’t deploy systems.</p>
+<section>
+  <div class="container">
+
+    <h2 class="section-title">
+      The Problem
+    </h2>
+
+    <p class="section-text">
+      AI systems are no longer limited to generating outputs.
+      They are triggering workflows, calling APIs, interacting with external systems, and executing actions across operational environments.
+    </p>
+
+    <div class="problem-grid">
+
+      <div class="problem-card">
+        <h3>Unverified Execution</h3>
+        <p>
+          AI-generated actions are executed without structured verification before propagation.
+        </p>
+      </div>
+
+      <div class="problem-card">
+        <h3>Cascading Automation Failures</h3>
+        <p>
+          A single incorrect action can trigger chained operational consequences across systems.
+        </p>
+      </div>
+
+      <div class="problem-card">
+        <h3>No Deterministic Control</h3>
+        <p>
+          Current AI deployments lack a dedicated runtime control layer before execution occurs.
+        </p>
+      </div>
+
     </div>
+
+  </div>
 </section>
 
-<!-- INTERACTIVE SYSTEM -->
-<section class="fade">
-    <div class="container">
-        <h2>System Core</h2>
+<section>
+  <div class="container">
 
-        <div class="system-grid">
-            <div class="system-item" onclick="showDetail('execution')">Execution</div>
-            <div class="system-item" onclick="showDetail('governance')">Governance</div>
-            <div class="system-item" onclick="showDetail('learning')">Learning</div>
-            <div class="system-item" onclick="showDetail('monetization')">Monetization</div>
-        </div>
+    <h2 class="section-title">
+      Control Before Execution
+    </h2>
 
-        <div id="system-detail"></div>
-    </div>
+    <p class="section-text">
+      Victor-D Systems introduces a control layer between AI systems and execution environments.
+      Every AI-generated action is intercepted, verified, and authorized before execution.
+    </p>
+
+  </div>
 </section>
 
-<!-- INVESTOR MODE -->
-<section id="investor" class="hidden fade">
-    <div class="container">
-        <h2>Investor Overview</h2>
+<section class="diagram-section">
+  <div class="container">
 
-        <p>Structured for high-ticket deployments and recurring revenue systems.</p>
-        <p>Built for territorial scaling and capital-efficient growth.</p>
-    </div>
+    <h2 class="section-title">
+      Deterministic Runtime Infrastructure
+    </h2>
+
+    <p class="section-text">
+      The system operates as a deterministic runtime layer for autonomous AI systems,
+      enabling controlled execution at the boundary between AI outputs and real-world actions.
+    </p>
+
+    <img src="victor_d_enterprise_diagram.png" alt="Victor-D Diagram" />
+
+  </div>
 </section>
 
-<!-- ACCESS FORM -->
-<section class="fade">
-    <div class="container">
-        <button onclick="requestAccess()">Request Access</button>
+<section>
+  <div class="container">
 
-        <form>
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
+    <div class="gateway-box">
 
-            <select>
-                <option>Capital Range</option>
-                <option>$10K – $100K</option>
-                <option>$100K – $1M</option>
-                <option>$1M+</option>
-            </select>
+      <h2 class="section-title">
+        Runtime Verification Gateway
+      </h2>
 
-            <select>
-                <option>Role</option>
-                <option>Investor</option>
-                <option>Operator</option>
-                <option>Partner</option>
-            </select>
+      <p class="section-text">
+        The initial deployment layer is the Victor-D Runtime Verification Gateway.
+      </p>
 
-            <button type="submit">Submit</button>
-        </form>
+      <ul>
+        <li>Execution interception</li>
+        <li>Verification convergence</li>
+        <li>Authorization-state control</li>
+        <li>Deterministic allow / deny decisions</li>
+      </ul>
+
     </div>
+
+  </div>
+</section>
+
+<section class="cta-section" id="request-access">
+  <div class="container">
+
+    <h2 class="section-title">
+      Request Access
+    </h2>
+
+    <p class="section-text">
+      Limited founding engagements available.
+    </p>
+
+    <form class="request-form"
+      action="mailto:founder@victor-dsystems.tech"
+      method="POST"
+      enctype="text/plain">
+
+      <input type="text" name="Name" placeholder="Your Name" required />
+
+      <input type="email" name="Email" placeholder="Your Email" required />
+
+      <textarea
+        name="Message"
+        rows="6"
+        placeholder="Briefly describe your AI system or operational use case"></textarea>
+
+      <button type="submit">
+        Request Access
+      </button>
+
+    </form>
+
+  </div>
 </section>
 
 <footer>
-    Salvador Aniceta & Co. Pte. Ltd.<br>
-    Victor-D Systems<br>
-    www.victor-dsystems.tech
+  © Victor-D Systems
 </footer>
-
-<script>
-// FADE
-const fades = document.querySelectorAll('.fade');
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('show');
-    });
-});
-
-fades.forEach(f => observer.observe(f));
-
-// INTERACTIVE SYSTEM
-function showDetail(type) {
-    const detail = document.getElementById("system-detail");
-
-    const content = {
-        execution: "Deploy multi-agent systems for revenue generation.",
-        governance: "Control risk, compliance, and operational integrity.",
-        learning: "Continuously optimize through data feedback loops.",
-        monetization: "Capture value through licensing and recurring flows."
-    };
-
-    detail.innerText = content[type];
-}
-
-// INVESTOR MODE
-function toggleInvestor() {
-    const section = document.getElementById("investor");
-    section.classList.toggle("hidden");
-}
-</script>
-
-<script>
-function requestAccess() {
-    const pass = prompt("Enter Access Code:");
-
-    if (pass === "VD-ACCESS") {
-        window.location.href = "investor.html";
-    } else {
-        alert("Access restricted.");
-    }
-}
-</script>
 
 </body>
 </html>
+```
 
